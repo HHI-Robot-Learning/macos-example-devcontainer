@@ -1,0 +1,37 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/python:3-3.14-trixie",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/desktop-lite:1": {
+		"password": "vscode",
+		"webPort": "6080",
+		"vncPort": "5901"
+	}},
+	"remoteEnv": {
+		"VNC_DPI": "192"
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "sudo apt update && sudo apt install libgl1 -y && pip3 install wheels-aarch64/robotic-0.4.3a1-cp314-cp314-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl ipykernel matplotlib",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"forwardPorts": [6080],
+"portsAttributes": {
+  "6080": {
+    "label": "Desktop (noVNC)",
+    "onAutoForward": "silent"
+  }
+  }
+}
